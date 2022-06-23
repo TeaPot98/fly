@@ -7,7 +7,6 @@
       "esnext"
     ],
     "allowJs": false,
-    "semicolon": [true, "always"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -20,6 +19,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
+  },
+  "rules": {
+    "semicolon": [true, "always"],
   },
   "include": [
     "src"

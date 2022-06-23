@@ -1,3 +1,5 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 
-export const context = createContext({});
+import { AppContext } from '../types';
+
+export const context = createContext<AppContext | null>(null);

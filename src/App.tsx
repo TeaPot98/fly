@@ -10,6 +10,6 @@ const App = () => {
       {JSON.stringify(airports)}
     </div>
   );
-}
+};
 
 export default App;
