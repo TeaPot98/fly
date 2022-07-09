@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import Home from './components/Home';
 
 import { context } from './state/context';
 
@@ -7,7 +8,8 @@ const App = () => {
   console.log(airports);
   return (
     <div className="App">
-      {JSON.stringify(airports)}
+      {/* {JSON.stringify(airports)} */}
+      <Home />
     </div>
   );
 };

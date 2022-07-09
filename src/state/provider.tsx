@@ -19,7 +19,7 @@ const MyProvider = ({ children }: { children: React.ReactNode }) => {
       countries,
       cities,
       airlines,
-      flyRoutes
+      flyRoutes,
     }}>
       {children}
     </Provider>

@@ -1,8 +1,8 @@
 export interface Airport {
   city_code: string;
   country_code: string;
-  name_translations: Map<string, string>;
-  coordinates: Map<string, number>;
+  name_translations: Record<string, string>;
+  coordinates: Record<string, number>;
   name: string;
   time_zone: string;
   flightable: boolean;
@@ -13,7 +13,7 @@ export interface Country {
   code: string;
   name: string;
   currency: string;
-  name_translations: Map<string, string>;
+  name_translations: Record<string, string>;
   cases: unknown;
 }
 
@@ -30,20 +30,20 @@ export interface FlyRoute {
 }
 
 export interface City {
-  country_code: string;
   code: string;
-  coordinates: Map<string, number>;
+  country_code: string;
+  name_translations: Record<string, string>;
+  coordinates: Record<string, number>;
   name: string;
   time_zone: string;
-  name_translations: Map<string, string>;
-  cases: Map<string, string>;
+  cases: Record<string, string>;
 }
 
 export interface Airline {
   name: unknown | string;
   code: string;
   is_lowcost: boolean;
-  name_translations: Map<string, string>;
+  name_translations: Record<string, string>;
 }
 
 export interface AppContext {
@@ -52,4 +52,13 @@ export interface AppContext {
   airports: Airport[] | null;
   flyRoutes: FlyRoute[] | null;
   airlines: Airline[] | null;
+}
+
+export interface SearchResult {
+  airportName: string;
+  airportCode: string;
+  cityName: string;
+  cityCode: string;
+  countryName: string;
+  countryCode: string;
 }

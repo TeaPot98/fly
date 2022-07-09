@@ -2,4 +2,12 @@ import { createContext } from 'react';
 
 import { AppContext } from '../types';
 
-export const context = createContext<AppContext | null>(null);
+const initialContext = {
+  countries: [],
+  cities: [],
+  airports: [],
+  flyRoutes: [],
+  airlines: [],
+};
+
+export const context = createContext<AppContext>(initialContext);
