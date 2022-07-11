@@ -55,6 +55,7 @@ export interface AppContext {
 }
 
 export interface SearchResult {
+  id: string;
   airportName: string;
   airportCode: string;
   cityName: string;

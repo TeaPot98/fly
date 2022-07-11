@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { Airport, City, Country, SearchResult } from './types';
 
 export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[] | null, airportsArr: Airport[] | null, str: string) => {
@@ -20,6 +21,7 @@ export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[]
       for (let j = 0; j < citiesArr.length; j++) {
         if (foundAirports[i].code === citiesArr[j].code) {
           output.push({
+            id: uuidv4(),
             airportName: foundAirports[i].name_translations.en,
             airportCode: foundAirports[i].code,
             cityName: citiesArr[j].name_translations.en,
@@ -47,6 +49,7 @@ export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[]
       for (let j = 0; j < airportsArr.length; j++) {
         if (foundCities[i].code === airportsArr[j].city_code) {
           output.push({
+            id: uuidv4(),
             airportName: airportsArr[j].name_translations.en,
             airportCode: airportsArr[j].code,
             cityName: foundCities[i].name_translations.en,
@@ -64,7 +67,7 @@ export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[]
     for (let i = 0; i < output.length; i++) {
       for (let j = 0; j < countriesArr.length; j++) {
         if (output[i].countryCode === countriesArr[j].code) {
-          output[i].countryName === countriesArr[j].name_translations.en;
+          output[i].countryName = countriesArr[j].name_translations.en;
         }
       }
     }

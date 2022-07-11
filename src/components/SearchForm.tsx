@@ -1,42 +1,28 @@
-import React, { FormEvent, useEffect } from 'react';
-import { useContext, useState } from 'react';
-import { context } from '../state/context';
+import { useState } from 'react';
 import SearchField from './SearchField';
 import { SearchResult } from '../types';
-import { searchAirports } from '../utils';
+import DateInput from './DateInput';
 
 const SearchForm = () => {
-  const {
-    airports,
-    cities,
-    countries,
-  } = useContext(context);
-  const [ departureString, setDepartureString ] = useState('');
-  const [ departureResult, setDepartureResult ] = useState<SearchResult[]>([]);
-
-  const handleDepartureSearch = (event: FormEvent): void => {
-    const target = event.target as HTMLInputElement;
-    setDepartureString(target.value);
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (departureString.length > 0) {
-        setDepartureResult(searchAirports(countries, cities, airports, departureString.toLowerCase()));
-      } else {
-        setDepartureResult([]);
-      }
-    }, 200);
-    return () => clearTimeout(timer);
-  }, [departureString]);
+  const [ departureAirport, setDepartureAirport ] = useState<SearchResult | null>(null);
+  const [ arrivalAirport, setArrivalAirport ] = useState<SearchResult | null>(null);
+  const [ , setDepartureDate ] = useState('');
+  const [ , setArrivalDate ] = useState('');
   
   return (
     <div>
       <SearchField 
-        list={departureResult} 
-        value={departureString}
-        onChange={handleDepartureSearch}
+        placeholder="Where from" 
+        foundItem={departureAirport}
+        setFoundItem={setDepartureAirport}
       />
+      <SearchField 
+        placeholder="Destination"
+        foundItem={arrivalAirport}
+        setFoundItem={setArrivalAirport}
+      />
+      <DateInput setDate={setDepartureDate} />
+      <DateInput setDate={setArrivalDate} />
     </div>
   );
 };
