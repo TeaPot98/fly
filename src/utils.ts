@@ -1,15 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
-import { Airport, City, Country, SearchResult } from './types';
+import { Airport, City, Country, AirportSearchResult } from './types';
 
 export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[] | null, airportsArr: Airport[] | null, str: string) => {
   const foundCities = [];
   const foundAirports = [];
-  const output: SearchResult[] = [];
+  const output: AirportSearchResult[] = [];
 
   // Searching airports
   if (airportsArr) {
     for (let i = 0; i < airportsArr.length; i++) {
-      if (airportsArr[i].code.toLowerCase().indexOf(str) !== -1 && foundAirports.length < 5) {
+      if (airportsArr[i].code.toLowerCase().indexOf(str) !== -1 && airportsArr[i].name_translations.en.indexOf('Airport') !== -1 && foundAirports.length < 5) {
         foundAirports.push(airportsArr[i]);
       }
     }
@@ -19,7 +19,7 @@ export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[]
   if (citiesArr) {
     for (let i = 0; i < foundAirports.length; i++) {
       for (let j = 0; j < citiesArr.length; j++) {
-        if (foundAirports[i].code === citiesArr[j].code) {
+        if (foundAirports[i].city_code === citiesArr[j].code) {
           output.push({
             id: uuidv4(),
             airportName: foundAirports[i].name_translations.en,
@@ -47,7 +47,9 @@ export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[]
   if (airportsArr) {
     for (let i = 0; i < foundCities.length; i++) {
       for (let j = 0; j < airportsArr.length; j++) {
-        if (foundCities[i].code === airportsArr[j].city_code) {
+        if (foundCities[i].code === airportsArr[j].city_code && 
+          airportsArr[j].name_translations.en.indexOf('Airport') !== -1 &&
+          output.some(element => element.airportCode === airportsArr[j].code) === false ) {
           output.push({
             id: uuidv4(),
             airportName: airportsArr[j].name_translations.en,
@@ -72,6 +74,8 @@ export const searchAirports = (countriesArr: Country[] | null, citiesArr: City[]
       }
     }
   }
+
+  console.log('Output >>>', output);
 
   // export interface SearchResult {
   //   airportName: string;

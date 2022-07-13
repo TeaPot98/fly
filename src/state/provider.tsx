@@ -20,6 +20,13 @@ const MyProvider = ({ children }: { children: React.ReactNode }) => {
       cities,
       airlines,
       flyRoutes,
+      search: {
+        departureAirportCode: '',
+        arrivalAirportCode: '',
+        departureDate: '',
+        arrivalDate: '',
+        currency: '',
+      },
     }}>
       {children}
     </Provider>

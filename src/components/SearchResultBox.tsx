@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 // import { useState } from 'react';
 import styled from 'styled-components';
-import { SearchResult } from '../types';
+import { AirportSearchResult, Theme } from '../types';
 import SearchResultItem from './SearchResultItem';
 
-const SearchResultBox = ({ list, selectItem }: { list: SearchResult[], selectItem: (item: SearchResult) => void }) => {
+const SearchResultBox = ({ list, selectItem }: { list: AirportSearchResult[], selectItem: (item: AirportSearchResult) => void }) => {
   return (
     <ResultDiv listLength={list.length}>
         <ul>
@@ -24,17 +26,26 @@ export default SearchResultBox;
 
 interface Props {
   listLength: number;
+  theme: Theme;
 }
 
 const ResultDiv = styled.div<Props>`
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 90px;
   /* height: 50px; */
-  border: ${props => props.listLength > 0 ? '2px solid black' : 'none'};
-  max-width: ${props => props.listLength > 0 ? '300px' : '0'};
-  max-height: ${props => `${props.listLength * 20}px`};
-  transition: max-width, max-height 0.15s ease-in-out;
+  border: ${props => props.listLength > 0 ? `2px solid ${props.theme.secondary.coldMorning}` : 'none'};
+  background-color: ${props => props.theme.secondary.lynxWhite};
+  max-width: ${props => props.listLength > 0 ? '600px' : '0'};
+  max-height: ${props => `${props.listLength * 42}px`};
+  transition: max-width, max-height 0.05s ease-in-out;
+  border-radius: 10px;
+  overflow: hidden;
+  
   && ul {
     list-style-type: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
   };
 `;

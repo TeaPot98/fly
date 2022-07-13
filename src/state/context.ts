@@ -8,6 +8,13 @@ const initialContext = {
   airports: [],
   flyRoutes: [],
   airlines: [],
+  search: {
+    departureAirportCode: '',
+    arrivalAirportCode: '',
+    departureDate: '',
+    arrivalDate: '',
+    currency: '',
+  },
 };
 
 export const context = createContext<AppContext>(initialContext);

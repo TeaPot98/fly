@@ -1,17 +1,16 @@
-import { useContext } from 'react';
+import styled from 'styled-components';
 import Home from './components/Home';
 
-import { context } from './state/context';
-
 const App = () => {
-  const airports = useContext(context);
-  console.log(airports);
   return (
-    <div className="App">
-      {/* {JSON.stringify(airports)} */}
+    <AppContainer className="App">
       <Home />
-    </div>
+    </AppContainer>
   );
 };
 
 export default App;
+
+const AppContainer = styled.div`
+  
+`;

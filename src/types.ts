@@ -46,15 +46,24 @@ export interface Airline {
   name_translations: Record<string, string>;
 }
 
+export interface SearchData {
+  departureAirportCode: string;
+  arrivalAirportCode: string;
+  departureDate: string;
+  arrivalDate: string;
+  currency: string;
+}
+
 export interface AppContext {
   countries: Country[] | null;
   cities: City[] | null;
   airports: Airport[] | null;
   flyRoutes: FlyRoute[] | null;
   airlines: Airline[] | null;
+  search: SearchData;
 }
 
-export interface SearchResult {
+export interface AirportSearchResult {
   id: string;
   airportName: string;
   airportCode: string;
@@ -62,4 +71,21 @@ export interface SearchResult {
   cityCode: string;
   countryName: string;
   countryCode: string;
+}
+
+export interface Flight {
+  origin: string;
+  destination: string;
+  price: number;
+  airline: string;
+  flight_number: number;
+  departure_at: string;
+  return_at: string;
+  transfers: number;
+  expires_at: string;
+}
+
+export interface Theme {
+  main?: string;
+  secondary: Record<string, string>;
 }
